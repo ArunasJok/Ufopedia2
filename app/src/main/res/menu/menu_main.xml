@@ -8,6 +8,7 @@
     android:title="@string/menu_addUfo"
     app:showAsAction="always" />
 
+
     <item
         android:id="@+id/item_donate"
         android:iconTint="@color/colorPrimary"

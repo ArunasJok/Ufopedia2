@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import ie.wit.ufopedia.R
 import ie.wit.ufopedia.databinding.ActivityDonateBinding
+import ie.wit.ufopedia.databinding.ActivityUfoListBinding
 import ie.wit.ufopedia.main.MainApp
 import ie.wit.ufopedia.models.DonationModel
 import timber.log.Timber
@@ -23,6 +24,8 @@ class Donate : AppCompatActivity() {
 
         donateLayout = ActivityDonateBinding.inflate(layoutInflater)
         setContentView(donateLayout.root)
+        donateLayout.toolbar.title = title
+        setSupportActionBar(donateLayout.toolbar)
         app = this.application as MainApp
 
         donateLayout.progressBar.max = 10000
@@ -63,15 +66,18 @@ class Donate : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
+        when (item.itemId) {
             R.id.action_report -> { startActivity(
                 Intent(this,
-                Report::class.java)
-            )
-                true
+                Report::class.java))
             }
-            else -> super.onOptionsItemSelected(item)
+            R.id.item_cancel -> { startActivity(
+                Intent(this,
+                    UfoListActivity::class.java))
+                Timber.i("Cancel pressed")
+            }
         }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onResume() {

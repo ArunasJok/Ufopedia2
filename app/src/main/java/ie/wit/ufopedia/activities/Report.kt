@@ -21,6 +21,8 @@ class Report : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         reportLayout = ActivityReportBinding.inflate(layoutInflater)
         setContentView(reportLayout.root)
+        reportLayout.toolbar.title = title
+        setSupportActionBar(reportLayout.toolbar)
 
         app = this.application as MainApp
         reportLayout.recyclerView.layoutManager = LinearLayoutManager(this)
