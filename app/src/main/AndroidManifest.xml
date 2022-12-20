@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ie.wit.ufopedia">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
         tools:ignore="CoarseFineLocation" />
 
     <application
@@ -14,6 +15,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ufopedia">
+        <activity
+            android:name=".activities.UfoMapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_ufo_maps"
+            android:theme="@style/Theme.Ufopedia.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -33,9 +43,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.UfoActivity" />
-
         <activity android:name=".activities.Donate" />
-
         <activity android:name=".activities.Report" />
     </application>
+
 </manifest>

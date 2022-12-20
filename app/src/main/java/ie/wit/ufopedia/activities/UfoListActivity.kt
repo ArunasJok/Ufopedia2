@@ -21,6 +21,7 @@ class UfoListActivity : AppCompatActivity(), UfoListener {
     lateinit var app: MainApp
     private lateinit var binding: ActivityUfoListBinding
     private lateinit var refreshIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var mapsIntentLauncher : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,7 @@ class UfoListActivity : AppCompatActivity(), UfoListener {
         // binding.recyclerView.adapter = UfoAdapter(app.ufos.findAll(),this)
         loadUfos()
         registerRefreshCallback()
+        registerMapCallback()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -53,6 +55,10 @@ class UfoListActivity : AppCompatActivity(), UfoListener {
             R.id.action_report -> {
                 val launcherIntent = Intent(this, Report::class.java)
                 refreshIntentLauncher.launch(launcherIntent)
+            }
+            R.id.item_map -> {
+                val launcherIntent = Intent(this, UfoMapsActivity::class.java)
+                mapsIntentLauncher.launch(launcherIntent)
             }
         }
         return super.onOptionsItemSelected(item)
@@ -82,6 +88,12 @@ class UfoListActivity : AppCompatActivity(), UfoListener {
     fun showUfos (ufos: List<UfoModel>) {
         binding.recyclerView.adapter = UfoAdapter(ufos, this)
         binding.recyclerView.adapter?.notifyDataSetChanged()
+    }
+
+    private fun registerMapCallback() {
+        mapsIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { }
     }
 }
 
