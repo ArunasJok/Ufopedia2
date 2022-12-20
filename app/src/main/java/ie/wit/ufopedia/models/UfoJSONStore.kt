@@ -42,7 +42,8 @@ class UfoJSONStore(private val context: Context) : UfoStore {
 
 
     override fun update(ufo: UfoModel) {
-        var foundUfo: UfoModel? = ufos.find { p -> p.id == ufo.id }
+        val ufosList = findAll() as ArrayList<UfoModel>
+        var foundUfo: UfoModel? = ufosList.find { p -> p.id == ufo.id }
         if (foundUfo != null) {
             foundUfo.title = ufo.title
             foundUfo.description = ufo.description
