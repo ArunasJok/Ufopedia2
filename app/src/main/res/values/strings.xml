@@ -12,7 +12,7 @@
     <string name="change_ufo_image">Change UFO image</string>
     <string name="button_location">Location of sighting</string>
     <string name="title_activity_map">Map</string>
-    <string name="menu_deleteUfo">Cancel</string>
+    <string name="menu_deleteUfo">Delete</string>
     <string name="donateTitle">Welcome User</string>
     <string name="donateSubtitle">Please Give Generously!</string>
     <string name="donateButton">Donate now!</string>

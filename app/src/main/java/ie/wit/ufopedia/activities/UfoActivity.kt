@@ -28,11 +28,12 @@ class UfoActivity : AppCompatActivity() {
     var ufo = UfoModel()
     // var location = Location(52.245696, -7.139102, 15f)
     lateinit var app : MainApp
+    var edit = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var edit = false
+
         binding = ActivityUfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.toolbarAdd.title = title
@@ -94,6 +95,7 @@ class UfoActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_ufo, menu)
+        if (edit && menu != null) menu.getItem(0).setVisible(true)
         return super.onCreateOptionsMenu(menu)
     }
 

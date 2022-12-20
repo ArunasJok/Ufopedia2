@@ -8,6 +8,7 @@
         app:showAsAction="always"/>
 
     <item
+
         android:id="@+id/item_delete"
         android:icon="@android:drawable/ic_menu_delete"
         android:iconTint="@color/white"
