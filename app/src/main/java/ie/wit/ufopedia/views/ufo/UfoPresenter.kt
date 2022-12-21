@@ -4,6 +4,10 @@ import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
@@ -18,21 +22,28 @@ import timber.log.Timber
 
 class UfoPresenter(private val view: UfoView) {
 
+    var map: GoogleMap? = null
     var ufo = UfoModel()
     var app: MainApp = view.application as MainApp
-    var binding: ActivityUfoBinding = ActivityUfoBinding.inflate(view.layoutInflater)
+    //var binding: ActivityUfoBinding = ActivityUfoBinding.inflate(view.layoutInflater)
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
     var edit = false;
+    private val location = Location(52.245696, -7.139102, 15f)
 
     init {
-        if (view.intent.hasExtra("ufo_edit")) {
-            edit = true
-            ufo = view.intent.extras?.getParcelable("ufo_edit")!!
-            view.showUfo(ufo)
-        }
+
         registerImagePickerCallback()
         registerMapCallback()
+
+        if (view.intent.hasExtra("ufo_edit")) {
+            edit = true
+            ufo = view.intent.extras?.getParcelable<UfoModel>("ufo_edit")!!
+            view.showUfo(ufo)
+        } else {
+            ufo.lat = location.lat
+            ufo.lng = location.lng
+        }
     }
 
     fun doAddOrSave(title: String, description: String) {
@@ -64,15 +75,33 @@ class UfoPresenter(private val view: UfoView) {
     }
 
     fun doSetLocation() {
-        val location = Location(52.245696, -7.139102, 15f)
+
         if (ufo.zoom != 0f) {
             location.lat =  ufo.lat
             location.lng = ufo.lng
             location.zoom = ufo.zoom
+            locationUpdate(ufo.lat, ufo.lng)
         }
         val launcherIntent = Intent(view, EditLocationView::class.java)
             .putExtra("location", location)
         mapIntentLauncher.launch(launcherIntent)
+    }
+
+    fun doConfigureMap(m: GoogleMap) {
+        map = m
+        locationUpdate(ufo.lat, ufo.lng)
+    }
+
+    fun locationUpdate(lat: Double, lng: Double) {
+        ufo.lat = lat
+        ufo.lng = lng
+        ufo.zoom = 15f
+        map?.clear()
+        map?.uiSettings?.setZoomControlsEnabled(true)
+        val options = MarkerOptions().title(ufo.title).position(LatLng(ufo.lat, ufo.lng))
+        map?.addMarker(options)
+        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(ufo.lat, ufo.lng), ufo.zoom))
+        view?.showUfo(ufo)
     }
     fun cacheUfo (title: String, description: String) {
         ufo.title = title;

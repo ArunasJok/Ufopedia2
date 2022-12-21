@@ -8,7 +8,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "org.wit.placemark"
+        applicationId "ie.wit.ufopedia"
         minSdk 30
         targetSdk 31
         versionCode 7
