@@ -16,8 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ufopedia">
         <activity
-            android:name=".activities.UfoMapsActivity"
-            android:exported="false"
+            android:name=".views.map.UfoMapView"
             android:label="@string/title_activity_ufo_maps"
             android:theme="@style/Theme.Ufopedia.NoActionBar">
             <meta-data

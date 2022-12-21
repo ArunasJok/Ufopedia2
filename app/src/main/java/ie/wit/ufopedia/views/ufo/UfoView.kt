@@ -15,12 +15,11 @@ import timber.log.Timber.i
 class UfoView : AppCompatActivity() {
 
     private lateinit var binding: ActivityUfoBinding
-    private lateinit var presenter: UfoPresenter
+    lateinit var presenter: UfoPresenter
     var ufo = UfoModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         binding = ActivityUfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -30,12 +29,10 @@ class UfoView : AppCompatActivity() {
         presenter = UfoPresenter(this)
 
         binding.chooseImage.setOnClickListener {
-            presenter.cacheUfo(binding.ufoTitle.text.toString(), binding.description.text.toString())
             presenter.doSelectImage()
         }
 
         binding.ufoLocation.setOnClickListener {
-            presenter.cacheUfo(binding.ufoTitle.text.toString(), binding.description.text.toString())
             presenter.doSetLocation()
         }
 
@@ -43,18 +40,22 @@ class UfoView : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_ufo, menu)
-        val deleteMenu: MenuItem = menu.findItem(R.id.item_delete)
-        if (presenter.edit){
-            deleteMenu.setVisible(true)
-        }
-        else{
-            deleteMenu.setVisible(false)
-        }
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.item_save -> {
+                if (binding.ufoTitle.text.toString().isEmpty()) {
+                    Snackbar.make(binding.root, R.string.enter_ufo_title, Snackbar.LENGTH_LONG)
+                        .show()
+                } else {
+                    presenter.doAddOrSave(binding.ufoTitle.text.toString(), binding.description.text.toString())
+                }
+            }
+            R.id.item_delete -> {
+                presenter.doDelete()
+            }
             R.id.item_cancel -> {
                 presenter.doCancel()
             }

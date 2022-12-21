@@ -4,9 +4,9 @@ import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import ie.wit.ufopedia.activities.Donate
-import ie.wit.ufopedia.activities.UfoMapsActivity
 import ie.wit.ufopedia.main.MainApp
 import ie.wit.ufopedia.models.UfoModel
+import ie.wit.ufopedia.views.map.UfoMapView
 import ie.wit.ufopedia.views.ufo.UfoView
 
 class UfoListPresenter(val view: UfoListView) {
@@ -40,7 +40,7 @@ class UfoListPresenter(val view: UfoListView) {
     }
 
     fun doShowUfosMap() {
-        val launcherIntent = Intent(view, UfoMapsActivity::class.java)
+        val launcherIntent = Intent(view, UfoMapView::class.java)
         refreshIntentLauncher.launch(launcherIntent)
     }
     private fun registerRefreshCallback() {
