@@ -56,7 +56,8 @@ class UfoJSONStore(private val context: Context) : UfoStore {
     }
 
     override fun delete(ufo: UfoModel) {
-        ufos.remove(ufo)
+        val foundUfo: UfoModel? = ufos.find { it.id == ufo.id }
+        ufos.remove(foundUfo)
         serialize()
     }
 

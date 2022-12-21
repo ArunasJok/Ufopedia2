@@ -29,10 +29,12 @@ class UfoView : AppCompatActivity() {
         presenter = UfoPresenter(this)
 
         binding.chooseImage.setOnClickListener {
+            presenter.cacheUfo(binding.ufoTitle.text.toString(), binding.description.text.toString())
             presenter.doSelectImage()
         }
 
         binding.ufoLocation.setOnClickListener {
+            presenter.cacheUfo(binding.ufoTitle.text.toString(), binding.description.text.toString())
             presenter.doSetLocation()
         }
 
@@ -40,6 +42,13 @@ class UfoView : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_ufo, menu)
+        val deleteMenu: MenuItem = menu.findItem(R.id.item_delete)
+        if (presenter.edit){
+            deleteMenu.setVisible(true)
+        }
+        else{
+            deleteMenu.setVisible(false)
+        }
         return super.onCreateOptionsMenu(menu)
     }
 

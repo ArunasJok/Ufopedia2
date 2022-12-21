@@ -1,18 +1,30 @@
 <resources>
     <string name="app_name">Ufopedia</string>
-    <string name="button_addUfo">Save UFO Sighting</string>
-    <string name="hint_ufoTitle">UFO Title</string>
-    <string name="hint_ufoDescription">Description </string>
+
+
+
+    <!-- Strings used for MENU -->
     <string name="menu_addUfo">Add New Sighting</string>
     <string name="menu_cancelUfo">Cancel</string>
+    <string name="menu_deleteUfo">Delete</string>
+    <string name="menu_donate">$upport</string>
+    <string name="menu_report">Donation List</string>
+    <string name="menu_saveUfo">Save</string>
+    <!-- Strings used for UFO CARD -->
+    <string name="hint_ufoTitle">UFO Title</string>
+    <string name="hint_ufoDescription">Description </string>
     <string name="enter_ufo_title"> Please enter a title for UFO </string>
     <string name="save_ufo"> Save UFO Sighting </string>
-    <string name="button_addImage"> Add an image </string>
     <string name="select_ufo_image">Select an image of UFO</string>
     <string name="change_ufo_image">Change UFO image</string>
-    <string name="button_location">Add location of sighting</string>
+    <!-- Strings used for MAPS -->
     <string name="title_activity_map">Map</string>
-    <string name="menu_deleteUfo">Delete</string>
+    <string name="title_activity_ufo_maps">Map of All UFOs </string>
+    <!-- Strings used for BUTTONS -->
+    <string name="button_addUfo">Save UFO Sighting</string>
+    <string name="button_addImage"> Add an image </string>
+    <string name="button_location">Add location of sighting</string>
+    <!-- Strings used for DONATIONS -->
     <string name="donateTitle">Welcome User</string>
     <string name="donateSubtitle">Please Give Generously!</string>
     <string name="donateButton">Donate now!</string>
@@ -25,19 +37,12 @@
     <string name="defaultAmount">00</string>
     <string name="defaultMethod">N/A</string>
     <string name="enter_amount">Enter Amount</string>
-    <string name="menu_donate">$upport</string>
     <string name="action_donate">Back to Donate</string>
     <string name="action_report">Report</string>
-    <string name="menu_report">Donation List</string>
-    <string name="title_activity_ufo_maps">Map of All UFOs </string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <!-- Strings used for fragments for NAVIGATION -->
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="menu_saveUfo">Save</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
 
 </resources>
