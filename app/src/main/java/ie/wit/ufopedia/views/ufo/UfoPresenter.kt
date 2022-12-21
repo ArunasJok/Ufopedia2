@@ -1,9 +1,12 @@
 package ie.wit.ufopedia.views.ufo
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -13,26 +16,30 @@ import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import ie.wit.ufopedia.R
 import ie.wit.ufopedia.databinding.ActivityUfoBinding
+import ie.wit.ufopedia.helpers.checkLocationPermissions
 import ie.wit.ufopedia.helpers.showImagePicker
 import ie.wit.ufopedia.main.MainApp
 import ie.wit.ufopedia.models.Location
 import ie.wit.ufopedia.models.UfoModel
 import ie.wit.ufopedia.views.location.EditLocationView
 import timber.log.Timber
+import timber.log.Timber.i
 
 class UfoPresenter(private val view: UfoView) {
 
     var map: GoogleMap? = null
     var ufo = UfoModel()
     var app: MainApp = view.application as MainApp
+    var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
     //var binding: ActivityUfoBinding = ActivityUfoBinding.inflate(view.layoutInflater)
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     var edit = false;
     private val location = Location(52.245696, -7.139102, 15f)
 
     init {
-
+        doPermissionLauncher()
         registerImagePickerCallback()
         registerMapCallback()
 
@@ -41,6 +48,9 @@ class UfoPresenter(private val view: UfoView) {
             ufo = view.intent.extras?.getParcelable<UfoModel>("ufo_edit")!!
             view.showUfo(ufo)
         } else {
+            if (checkLocationPermissions(view)) {
+                doSetCurrentLocation()
+            }
             ufo.lat = location.lat
             ufo.lng = location.lng
         }
@@ -103,6 +113,14 @@ class UfoPresenter(private val view: UfoView) {
         map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(ufo.lat, ufo.lng), ufo.zoom))
         view?.showUfo(ufo)
     }
+
+    @SuppressLint("MissingPermission")
+    fun doSetCurrentLocation() {
+        locationService.lastLocation.addOnSuccessListener {
+            locationUpdate(it.latitude, it.longitude)
+        }
+    }
+
     fun cacheUfo (title: String, description: String) {
         ufo.title = title;
         ufo.description = description
@@ -145,6 +163,19 @@ class UfoPresenter(private val view: UfoView) {
                     AppCompatActivity.RESULT_CANCELED -> { } else -> { }
                 }
 
+            }
+    }
+
+    private fun doPermissionLauncher() {
+        i("permission check called")
+        requestPermissionLauncher =
+            view.registerForActivityResult(ActivityResultContracts.RequestPermission())
+            { isGranted: Boolean ->
+                if (isGranted) {
+                    doSetCurrentLocation()
+                } else {
+                    locationUpdate(location.lat, location.lng)
+                }
             }
     }
 }
