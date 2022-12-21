@@ -11,6 +11,7 @@ import ie.wit.ufopedia.databinding.ActivityDonateBinding
 import ie.wit.ufopedia.databinding.ActivityUfoListBinding
 import ie.wit.ufopedia.main.MainApp
 import ie.wit.ufopedia.models.DonationModel
+import ie.wit.ufopedia.views.ufolist.UfoListView
 import timber.log.Timber
 
 class Donate : AppCompatActivity() {
@@ -73,7 +74,7 @@ class Donate : AppCompatActivity() {
             }
             R.id.item_cancel -> { startActivity(
                 Intent(this,
-                    UfoListActivity::class.java))
+                    UfoListView::class.java))
                 Timber.i("Cancel pressed")
             }
         }
