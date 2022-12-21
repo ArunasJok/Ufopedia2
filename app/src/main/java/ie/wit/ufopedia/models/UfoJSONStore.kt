@@ -73,6 +73,11 @@ class UfoJSONStore(private val context: Context) : UfoStore {
     private fun logAll() {
         ufos.forEach { Timber.i("$it") }
     }
+
+    override fun findById(id:Long) : UfoModel? {
+        val foundUfo: UfoModel? = ufos.find { it.id == id }
+        return foundUfo
+    }
 }
 
 class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {

@@ -42,4 +42,9 @@ class UfoMemStore : UfoStore {
     override fun delete(ufo: UfoModel) {
         ufos.remove(ufo)
     }
+
+    override fun findById(id:Long) : UfoModel? {
+        val foundUfo: UfoModel? = ufos.find { it.id == id }
+        return foundUfo
+    }
 }

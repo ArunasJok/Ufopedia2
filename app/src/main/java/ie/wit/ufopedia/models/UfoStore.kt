@@ -5,4 +5,5 @@ interface UfoStore {
     fun create(ufo: UfoModel)
     fun update(ufo: UfoModel)
     fun delete(ufo: UfoModel)
+    fun findById(id:Long) : UfoModel?
 }

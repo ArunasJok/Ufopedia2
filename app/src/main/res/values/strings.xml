@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Ufopedia</string>
-    <string name="button_addUfo">Add UFO Sighting</string>
+    <string name="button_addUfo">Save UFO Sighting</string>
     <string name="hint_ufoTitle">UFO Title</string>
     <string name="hint_ufoDescription">Description </string>
     <string name="menu_addUfo">Add New Sighting</string>
@@ -10,7 +10,7 @@
     <string name="button_addImage"> Add an image </string>
     <string name="select_ufo_image">Select an image of UFO</string>
     <string name="change_ufo_image">Change UFO image</string>
-    <string name="button_location">Location of sighting</string>
+    <string name="button_location">Add location of sighting</string>
     <string name="title_activity_map">Map</string>
     <string name="menu_deleteUfo">Delete</string>
     <string name="donateTitle">Welcome User</string>

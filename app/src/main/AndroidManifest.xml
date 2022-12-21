@@ -30,11 +30,11 @@
             android:value="AIzaSyD1naJMDaPbmvPL1W-Z9dtRATpEo6GZLs4" />
 
         <activity
-            android:name=".activities.MapActivity"
+            android:name=".views.location.EditLocationView"
             android:exported="true"
             android:label="@string/title_activity_map" />
         <activity
-            android:name=".activities.UfoListActivity"
+            android:name=".views.ufolist.UfoListView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +42,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.UfoActivity" />
+        <activity android:name=".views.ufo.UfoView" />
         <activity android:name=".activities.Donate" />
         <activity android:name=".activities.Report" />
     </application>

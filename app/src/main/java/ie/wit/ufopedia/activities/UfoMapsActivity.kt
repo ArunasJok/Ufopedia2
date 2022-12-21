@@ -53,8 +53,12 @@ class UfoMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
-        contentBinding.currentTitle.text = marker.title
-        return false
+        val tag = marker.tag as Long
+        val ufo = app.ufos.findById(tag)
+        contentBinding.currentTitle.text = ufo!!.title
+        contentBinding.currentDescription.text = ufo!!.description
+        //imageView.setImageBitmap(readImageFromPath(this@UfoMapsActivity, ufo.image))
+        return true
     }
 
     override fun onDestroy() {
