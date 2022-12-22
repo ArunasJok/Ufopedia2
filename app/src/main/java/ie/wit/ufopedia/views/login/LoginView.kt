@@ -1,6 +1,7 @@
 package ie.wit.ufopedia.views.login
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import ie.wit.ufopedia.databinding.ActivityLoginBinding
@@ -15,6 +16,8 @@ class LoginView : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.progressBar.visibility = View.GONE
+
 
         binding.signUp.setOnClickListener {
             val email = binding.email.text.toString()
@@ -39,5 +42,17 @@ class LoginView : AppCompatActivity(){
                 presenter.doLogin(email,password)
             }
         }
+    }
+
+    fun showSnackBar(message: CharSequence){
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+            .show()
+    }
+    fun showProgress() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    fun hideProgress() {
+        binding.progressBar.visibility = View.GONE
     }
 }
