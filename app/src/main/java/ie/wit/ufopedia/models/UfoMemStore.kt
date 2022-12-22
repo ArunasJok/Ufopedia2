@@ -12,17 +12,17 @@ class UfoMemStore : UfoStore {
 
     val ufos = ArrayList<UfoModel>()
 
-    override fun findAll(): List<UfoModel> {
+    override suspend fun findAll(): List<UfoModel> {
         return ufos
     }
 
-    override fun create(ufo: UfoModel) {
+    override suspend fun create(ufo: UfoModel) {
         ufo.id = getId()
         ufos.add(ufo)
         logAll()
     }
 
-    override fun update(ufo: UfoModel) {
+    override suspend fun update(ufo: UfoModel) {
         var foundUfo: UfoModel? = ufos.find { p -> p.id == ufo.id }
         if (foundUfo != null) {
             foundUfo.title = ufo.title
@@ -39,11 +39,11 @@ class UfoMemStore : UfoStore {
         ufos.forEach { i("$it") }
     }
 
-    override fun delete(ufo: UfoModel) {
+    override suspend fun delete(ufo: UfoModel) {
         ufos.remove(ufo)
     }
 
-    override fun findById(id:Long) : UfoModel? {
+    override suspend fun findById(id:Long) : UfoModel? {
         val foundUfo: UfoModel? = ufos.find { it.id == id }
         return foundUfo
     }

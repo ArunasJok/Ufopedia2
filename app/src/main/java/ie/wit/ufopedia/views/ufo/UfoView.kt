@@ -11,6 +11,9 @@ import com.squareup.picasso.Picasso
 import ie.wit.ufopedia.R
 import ie.wit.ufopedia.databinding.ActivityUfoBinding
 import ie.wit.ufopedia.models.UfoModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import timber.log.Timber.i
 
 class UfoView : AppCompatActivity() {
@@ -67,11 +70,18 @@ class UfoView : AppCompatActivity() {
                     Snackbar.make(binding.root, R.string.enter_ufo_title, Snackbar.LENGTH_LONG)
                         .show()
                 } else {
-                    presenter.doAddOrSave(binding.ufoTitle.text.toString(), binding.description.text.toString())
+                    GlobalScope.launch(Dispatchers.IO) {
+                        presenter.doAddOrSave(
+                            binding.ufoTitle.text.toString(),
+                            binding.description.text.toString()
+                        )
+                    }
                 }
             }
             R.id.item_delete -> {
-                presenter.doDelete()
+                GlobalScope.launch(Dispatchers.IO){
+                    presenter.doDelete()
+                }
             }
             R.id.item_cancel -> {
                 presenter.doCancel()

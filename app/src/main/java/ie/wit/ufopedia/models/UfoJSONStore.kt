@@ -29,19 +29,19 @@ class UfoJSONStore(private val context: Context) : UfoStore {
         }
     }
 
-    override fun findAll(): MutableList<UfoModel> {
+    override suspend fun findAll(): MutableList<UfoModel> {
         logAll()
         return ufos
     }
 
-    override fun create(ufo: UfoModel) {
+    override suspend fun create(ufo: UfoModel) {
         ufo.id = generateRandomId()
         ufos.add(ufo)
         serialize()
     }
 
 
-    override fun update(ufo: UfoModel) {
+    override suspend fun update(ufo: UfoModel) {
         val ufosList = findAll() as ArrayList<UfoModel>
         var foundUfo: UfoModel? = ufosList.find { p -> p.id == ufo.id }
         if (foundUfo != null) {
@@ -55,7 +55,7 @@ class UfoJSONStore(private val context: Context) : UfoStore {
         }
     }
 
-    override fun delete(ufo: UfoModel) {
+    override suspend fun delete(ufo: UfoModel) {
         val foundUfo: UfoModel? = ufos.find { it.id == ufo.id }
         ufos.remove(foundUfo)
         serialize()
@@ -75,7 +75,7 @@ class UfoJSONStore(private val context: Context) : UfoStore {
         ufos.forEach { Timber.i("$it") }
     }
 
-    override fun findById(id:Long) : UfoModel? {
+    override suspend fun findById(id:Long) : UfoModel? {
         val foundUfo: UfoModel? = ufos.find { it.id == id }
         return foundUfo
     }

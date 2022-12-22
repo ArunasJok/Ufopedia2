@@ -11,6 +11,9 @@ import ie.wit.ufopedia.adapters.UfoListener
 import ie.wit.ufopedia.databinding.ActivityUfoListBinding
 import ie.wit.ufopedia.main.MainApp
 import ie.wit.ufopedia.models.UfoModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class UfoListView : AppCompatActivity(), UfoListener {
@@ -60,7 +63,10 @@ class UfoListView : AppCompatActivity(), UfoListener {
     }
 
     private fun loadUfos() {
-        binding.recyclerView.adapter = UfoAdapter(presenter.getUfos(), this)
+        GlobalScope.launch(Dispatchers.Main){
+            binding.recyclerView.adapter =
+                UfoAdapter(presenter.getUfos(), this@UfoListView)
+        }
         binding.recyclerView.adapter?.notifyDataSetChanged()
     }
 }

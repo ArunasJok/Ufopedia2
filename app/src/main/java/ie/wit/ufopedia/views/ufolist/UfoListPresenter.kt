@@ -8,6 +8,9 @@ import ie.wit.ufopedia.main.MainApp
 import ie.wit.ufopedia.models.UfoModel
 import ie.wit.ufopedia.views.map.UfoMapView
 import ie.wit.ufopedia.views.ufo.UfoView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class UfoListPresenter(val view: UfoListView) {
 
@@ -21,7 +24,7 @@ class UfoListPresenter(val view: UfoListView) {
         registerRefreshCallback()
     }
 
-    fun getUfos() = app.ufos.findAll()
+    suspend fun getUfos() = app.ufos.findAll()
 
     fun doOpenDonate() {
         val launcherIntent = Intent(view, Donate::class.java)
@@ -46,7 +49,9 @@ class UfoListPresenter(val view: UfoListView) {
     private fun registerRefreshCallback() {
         refreshIntentLauncher =
             view.registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-            { getUfos() }
+            { GlobalScope.launch(Dispatchers.Main){
+                getUfos()
+            } }
     }
     private fun registerMapCallback() {
         mapIntentLauncher =

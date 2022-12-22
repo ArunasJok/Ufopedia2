@@ -60,7 +60,7 @@ class UfoPresenter(private val view: UfoView) {
         }
     }
 
-    fun doAddOrSave(title: String, description: String) {
+    suspend fun doAddOrSave(title: String, description: String) {
         ufo.title = title
         ufo.description = description
         if (edit) {
@@ -78,7 +78,7 @@ class UfoPresenter(private val view: UfoView) {
 
     }
 
-    fun doDelete() {
+    suspend fun doDelete() {
         app.ufos.delete(ufo)
         view.finish()
 

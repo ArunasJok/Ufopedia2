@@ -9,6 +9,9 @@ import ie.wit.ufopedia.databinding.ActivityUfoMapsBinding
 import ie.wit.ufopedia.databinding.ContentUfoMapsBinding
 import ie.wit.ufopedia.main.MainApp
 import ie.wit.ufopedia.models.UfoModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class UfoMapView : AppCompatActivity() , GoogleMap.OnMarkerClickListener{
 
@@ -30,7 +33,9 @@ class UfoMapView : AppCompatActivity() , GoogleMap.OnMarkerClickListener{
 
         contentBinding.mapView.onCreate(savedInstanceState)
         contentBinding.mapView.getMapAsync{
-            presenter.doPopulateMap(it)
+            GlobalScope.launch(Dispatchers.Main) {
+                presenter.doPopulateMap(it)
+            }
         }
     }
     fun showUfo(ufo: UfoModel) {
@@ -42,7 +47,9 @@ class UfoMapView : AppCompatActivity() , GoogleMap.OnMarkerClickListener{
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
-        presenter.doMarkerSelected(marker)
+        GlobalScope.launch(Dispatchers.Main) {
+            presenter.doMarkerSelected(marker)
+        }
         return true
     }
 
