@@ -15,6 +15,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ufopedia">
+
+        <activity android:name=".views.login.LoginView"
+            android:label="@string/title_activity_login"
+            android:launchMode="singleTop"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".views.map.UfoMapView"
             android:label="@string/title_activity_ufo_maps"
@@ -35,11 +46,6 @@
         <activity
             android:name=".views.ufolist.UfoListView"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".views.ufo.UfoView" />
         <activity android:name=".activities.Donate" />

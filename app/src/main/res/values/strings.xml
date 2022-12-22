@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Ufopedia</string>
-
-
+    <!-- Strings used for LOGIN/LOGOUT -->
+    <string name="title_activity_login"> Signup/Login to UFO_pedia</string>
 
     <!-- Strings used for MENU -->
     <string name="menu_addUfo">Add New Sighting</string>
