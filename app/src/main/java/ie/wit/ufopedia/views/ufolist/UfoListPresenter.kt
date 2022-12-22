@@ -6,6 +6,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import ie.wit.ufopedia.activities.Donate
 import ie.wit.ufopedia.main.MainApp
 import ie.wit.ufopedia.models.UfoModel
+import ie.wit.ufopedia.views.login.LoginView
 import ie.wit.ufopedia.views.map.UfoMapView
 import ie.wit.ufopedia.views.ufo.UfoView
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,7 @@ class UfoListPresenter(val view: UfoListView) {
     var app: MainApp
     private lateinit var refreshIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var editIntentLauncher : ActivityResultLauncher<Intent>
 
     init {
         app = view.application as MainApp
@@ -57,5 +59,10 @@ class UfoListPresenter(val view: UfoListView) {
         mapIntentLauncher =
             view.registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             {  }
+    }
+
+    fun doLogout(){
+        val launcherIntent = Intent(view, LoginView::class.java)
+        editIntentLauncher.launch(launcherIntent)
     }
 }
