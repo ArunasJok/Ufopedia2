@@ -81,8 +81,8 @@ class UfoView : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
     fun showUfo(ufo: UfoModel) {
-        binding.ufoTitle.setText(ufo.title)
-        binding.description.setText(ufo.description)
+        if (binding.ufoTitle.text.isEmpty()) binding.ufoTitle.setText(ufo.title)
+        if (binding.description.text.isEmpty())  binding.description.setText(ufo.description)
 
         Picasso.get()
             .load(ufo.image)
