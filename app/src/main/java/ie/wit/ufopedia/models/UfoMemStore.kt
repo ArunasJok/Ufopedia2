@@ -28,9 +28,7 @@ class UfoMemStore : UfoStore {
             foundUfo.title = ufo.title
             foundUfo.description = ufo.description
             foundUfo.image = ufo.image
-            foundUfo.lat = ufo.lat
-            foundUfo.lng = ufo.lng
-            foundUfo.zoom = ufo.zoom
+            foundUfo.location = ufo.location
             logAll()
         }
     }

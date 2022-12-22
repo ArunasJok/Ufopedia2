@@ -100,8 +100,8 @@ class UfoView : AppCompatActivity() {
         if (ufo.image != Uri.EMPTY) {
             binding.chooseImage.setText(R.string.change_ufo_image)
         }
-        binding.lat.setText("%.6f".format(ufo.lat))
-        binding.lng.setText("%.6f".format(ufo.lng))
+        binding.lat.setText("%.6f".format(ufo.location.lat))
+        binding.lng.setText("%.6f".format(ufo.location.lng))
 
     }
 

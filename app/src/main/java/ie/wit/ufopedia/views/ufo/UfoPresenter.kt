@@ -55,8 +55,8 @@ class UfoPresenter(private val view: UfoView) {
             if (checkLocationPermissions(view)) {
                 doSetCurrentLocation()
             }
-            ufo.lat = location.lat
-            ufo.lng = location.lng
+            ufo.location.lat = location.lat
+            ufo.location.lng = location.lng
         }
     }
 
@@ -89,12 +89,11 @@ class UfoPresenter(private val view: UfoView) {
     }
 
     fun doSetLocation() {
-
-        if (ufo.zoom != 0f) {
-            location.lat =  ufo.lat
-            location.lng = ufo.lng
-            location.zoom = ufo.zoom
-            locationUpdate(ufo.lat, ufo.lng)
+        if (ufo.location.zoom != 0f) {
+            location.lat =  ufo.location.lat
+            location.lng = ufo.location.lng
+            location.zoom = ufo.location.zoom
+            locationUpdate(ufo.location.lat, ufo.location.lng)
         }
         val launcherIntent = Intent(view, EditLocationView::class.java)
             .putExtra("location", location)
@@ -103,18 +102,16 @@ class UfoPresenter(private val view: UfoView) {
 
     fun doConfigureMap(m: GoogleMap) {
         map = m
-        locationUpdate(ufo.lat, ufo.lng)
+        locationUpdate(ufo.location.lat, ufo.location.lng)
     }
 
     fun locationUpdate(lat: Double, lng: Double) {
-        ufo.lat = lat
-        ufo.lng = lng
-        ufo.zoom = 15f
+        ufo.location = location
         map?.clear()
         map?.uiSettings?.setZoomControlsEnabled(true)
-        val options = MarkerOptions().title(ufo.title).position(LatLng(ufo.lat, ufo.lng))
+        val options = MarkerOptions().title(ufo.title).position(LatLng(ufo.location.lat, ufo.location.lng))
         map?.addMarker(options)
-        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(ufo.lat, ufo.lng), ufo.zoom))
+        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(ufo.location.lat, ufo.location.lng), ufo.location.zoom))
         view?.showUfo(ufo)
     }
 
@@ -174,9 +171,7 @@ class UfoPresenter(private val view: UfoView) {
                             Timber.i("Got Location ${result.data.toString()}")
                             val location = result.data!!.extras?.getParcelable<Location>("location")!!
                             Timber.i("Location == $location")
-                            ufo.lat = location.lat
-                            ufo.lng = location.lng
-                            ufo.zoom = location.zoom
+                            ufo.location = location
                         } // end of if
                     }
                     AppCompatActivity.RESULT_CANCELED -> { } else -> { }
