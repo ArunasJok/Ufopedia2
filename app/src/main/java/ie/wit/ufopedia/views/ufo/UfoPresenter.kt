@@ -6,6 +6,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -17,6 +19,7 @@ import com.squareup.picasso.Picasso
 import ie.wit.ufopedia.R
 import ie.wit.ufopedia.databinding.ActivityUfoBinding
 import ie.wit.ufopedia.helpers.checkLocationPermissions
+import ie.wit.ufopedia.helpers.createDefaultLocationRequest
 import ie.wit.ufopedia.helpers.showImagePicker
 import ie.wit.ufopedia.main.MainApp
 import ie.wit.ufopedia.models.Location
@@ -31,6 +34,7 @@ class UfoPresenter(private val view: UfoView) {
     var ufo = UfoModel()
     var app: MainApp = view.application as MainApp
     var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
+    private val locationRequest = createDefaultLocationRequest()
     //var binding: ActivityUfoBinding = ActivityUfoBinding.inflate(view.layoutInflater)
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
@@ -118,6 +122,21 @@ class UfoPresenter(private val view: UfoView) {
     fun doSetCurrentLocation() {
         locationService.lastLocation.addOnSuccessListener {
             locationUpdate(it.latitude, it.longitude)
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun doRestartLocationUpdates() {
+        var locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                if (locationResult != null && locationResult.locations != null) {
+                    val l = locationResult.locations.last()
+                    locationUpdate(l.latitude, l.longitude)
+                }
+            }
+        }
+        if (!edit) {
+            locationService.requestLocationUpdates(locationRequest, locationCallback, null)
         }
     }
 

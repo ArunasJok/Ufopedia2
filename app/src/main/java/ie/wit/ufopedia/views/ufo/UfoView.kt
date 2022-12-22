@@ -35,10 +35,10 @@ class UfoView : AppCompatActivity() {
             presenter.doSelectImage()
         }
 
-        binding.ufoLocation.setOnClickListener {
+        /*binding.ufoLocation.setOnClickListener {
             presenter.cacheUfo(binding.ufoTitle.text.toString(), binding.description.text.toString())
             presenter.doSetLocation()
-        }
+        }*/
 
         binding.mapView2.onCreate(savedInstanceState);
         binding.mapView2.getMapAsync {
@@ -90,6 +90,8 @@ class UfoView : AppCompatActivity() {
         if (ufo.image != Uri.EMPTY) {
             binding.chooseImage.setText(R.string.change_ufo_image)
         }
+        binding.lat.setText("%.6f".format(ufo.lat))
+        binding.lng.setText("%.6f".format(ufo.lng))
 
     }
 
@@ -119,7 +121,9 @@ class UfoView : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         binding.mapView2.onResume()
+        presenter.doRestartLocationUpdates()
     }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
