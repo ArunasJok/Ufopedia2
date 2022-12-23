@@ -35,6 +35,7 @@ class UfoPresenter(private val view: UfoView) {
     var app: MainApp = view.application as MainApp
     var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
     private val locationRequest = createDefaultLocationRequest()
+    var locationManuallyChanged = false;
     //var binding: ActivityUfoBinding = ActivityUfoBinding.inflate(view.layoutInflater)
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
@@ -89,6 +90,8 @@ class UfoPresenter(private val view: UfoView) {
     }
 
     fun doSetLocation() {
+        locationManuallyChanged = true;
+
         if (ufo.location.zoom != 0f) {
             location.lat =  ufo.location.lat
             location.lng = ufo.location.lng
@@ -128,7 +131,9 @@ class UfoPresenter(private val view: UfoView) {
             override fun onLocationResult(locationResult: LocationResult?) {
                 if (locationResult != null && locationResult.locations != null) {
                     val l = locationResult.locations.last()
-                    locationUpdate(l.latitude, l.longitude)
+                    if(!locationManuallyChanged) {
+                        locationUpdate(l.latitude, l.longitude)
+                    }
                 }
             }
         }

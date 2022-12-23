@@ -53,8 +53,11 @@ class LoginPresenter (val view: LoginView)  {
         view.showProgress()
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(view!!) { task ->
             if (task.isSuccessful) {
-                val launcherIntent = Intent(view, UfoListView::class.java)
-                loginIntentLauncher.launch(launcherIntent)
+                fireStore!!.fetchUfos {
+                    view?.hideProgress()
+                    val launcherIntent = Intent(view, UfoListView::class.java)
+                    loginIntentLauncher.launch(launcherIntent)
+                }
             } else {
                 view.showSnackBar("Login failed: ${task.exception?.message}")
             }
