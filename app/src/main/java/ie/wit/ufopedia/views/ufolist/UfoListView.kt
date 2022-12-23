@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import ie.wit.ufopedia.R
 import ie.wit.ufopedia.adapters.UfoAdapter
 import ie.wit.ufopedia.adapters.UfoListener
@@ -26,8 +27,13 @@ class UfoListView : AppCompatActivity(), UfoListener {
         super.onCreate(savedInstanceState)
         binding = ActivityUfoListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            binding.toolbar.title = "${title}: ${user.email}"
+        }
         presenter = UfoListPresenter(this)
         app = application as MainApp
 
