@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import ie.wit.ufopedia.R
 import ie.wit.ufopedia.databinding.ActivityUfoBinding
+import ie.wit.ufopedia.models.Location
 import ie.wit.ufopedia.models.UfoModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -94,18 +95,21 @@ class UfoView : AppCompatActivity() {
         if (binding.ufoTitle.text.isEmpty()) binding.ufoTitle.setText(ufo.title)
         if (binding.description.text.isEmpty())  binding.description.setText(ufo.description)
 
-        Picasso.get()
-            .load(ufo.image)
-            .into(binding.ufoImage)
-        if (ufo.image != Uri.EMPTY) {
+        if (ufo.image != "") {
+            Picasso.get()
+                .load(ufo.image)
+                .into(binding.ufoImage)
+
             binding.chooseImage.setText(R.string.change_ufo_image)
         }
-        binding.lat.setText("%.6f".format(ufo.location.lat))
-        binding.lng.setText("%.6f".format(ufo.location.lng))
-
+        this.showLocation(ufo.location)
+    }
+    private fun showLocation (loc: Location){
+        binding.lat.setText("%.6f".format(loc.lat))
+        binding.lng.setText("%.6f".format(loc.lng))
     }
 
-    fun updateImage(image: Uri){
+    fun updateImage(image: String){
         i("Image updated")
         Picasso.get()
             .load(image)

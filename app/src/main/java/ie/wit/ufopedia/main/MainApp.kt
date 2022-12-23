@@ -19,9 +19,10 @@ class MainApp : Application() {
         Timber.plant(Timber.DebugTree())
         // ufos = UfoMemStore()
         // ufos = UfoJSONStore(applicationContext)
-        ufos = UFoStoreRoom(applicationContext)
+        // ufos = UFoStoreRoom(applicationContext)
+        ufos = UfoFireStore(applicationContext)
         donationsStore = DonationMemStore()
-        i("UFOpedia has started!")
+        i("UFO_pedia has started!")
 
     }
 }

@@ -6,4 +6,5 @@ interface UfoStore {
     suspend fun update(ufo: UfoModel)
     suspend fun delete(ufo: UfoModel)
     suspend fun findById(id:Long) : UfoModel?
+    suspend fun clear()
 }

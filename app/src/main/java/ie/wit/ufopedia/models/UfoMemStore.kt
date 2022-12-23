@@ -45,4 +45,8 @@ class UfoMemStore : UfoStore {
         val foundUfo: UfoModel? = ufos.find { it.id == id }
         return foundUfo
     }
+
+    override suspend fun clear(){
+        ufos.clear()
+    }
 }

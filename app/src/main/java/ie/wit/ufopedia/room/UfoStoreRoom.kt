@@ -33,9 +33,9 @@ class UFoStoreRoom(val context: Context) : UfoStore {
     }
 
     override suspend fun delete(ufo: UfoModel) {
-        dao.deletePlacemark(ufo)
+        dao.deleteUfo(ufo)
     }
 
-    fun clear() {
+    override suspend fun clear(){
     }
 }

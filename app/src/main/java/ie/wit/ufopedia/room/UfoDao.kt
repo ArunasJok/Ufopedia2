@@ -19,5 +19,5 @@ interface UfoDao {
     suspend fun update(ufo: UfoModel)
 
     @Delete
-    suspend fun deletePlacemark(placemark: UfoModel)
+    suspend fun deleteUfo(ufo: UfoModel)
 }

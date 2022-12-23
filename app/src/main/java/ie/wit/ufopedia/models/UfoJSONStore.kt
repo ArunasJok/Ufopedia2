@@ -78,6 +78,10 @@ class UfoJSONStore(private val context: Context) : UfoStore {
         val foundUfo: UfoModel? = ufos.find { it.id == id }
         return foundUfo
     }
+
+    override suspend fun clear(){
+        ufos.clear()
+    }
 }
 
 class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {
@@ -96,4 +100,5 @@ class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {
     ): JsonElement {
         return JsonPrimitive(src.toString())
     }
+
 }

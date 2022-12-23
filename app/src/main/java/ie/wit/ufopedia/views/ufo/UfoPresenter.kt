@@ -143,7 +143,6 @@ class UfoPresenter(private val view: UfoView) {
     }
 
     private fun registerImagePickerCallback() {
-
         imageIntentLauncher =
             view.registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             { result ->
@@ -151,7 +150,7 @@ class UfoPresenter(private val view: UfoView) {
                     AppCompatActivity.RESULT_OK -> {
                         if (result.data != null) {
                             Timber.i("Got Result ${result.data!!.data}")
-                            ufo.image = result.data!!.data!!
+                            ufo.image = result.data!!.data!!.toString()
                             view.updateImage(ufo.image)
                         }
                     }

@@ -34,7 +34,12 @@ class UfoAdapter constructor(private var ufos: List<UfoModel>,
         fun bind(ufo: UfoModel, listener: UfoListener) {
             binding.ufoTitle.text = ufo.title
             binding.description.text = ufo.description
-            Picasso.get().load(ufo.image).resize(200,200).into(binding.imageIcon)
+            if (ufo.image != ""){
+                Picasso.get()
+                    .load(ufo.image)
+                    .resize(200, 200)
+                    .into(binding.imageIcon)
+            }
             binding.root.setOnClickListener { listener.onUfoClick(ufo) }
         }
     }

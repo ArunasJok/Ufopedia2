@@ -59,7 +59,9 @@ class UfoListView : AppCompatActivity(), UfoListener {
             R.id.item_add -> { presenter.doAddUfo() }
             R.id.item_map -> { presenter.doShowUfosMap() }
             R.id.item_donate -> { presenter.doOpenDonate() }
-            R.id.item_logout -> { presenter.doLogout() }
+            R.id.item_logout -> { GlobalScope.launch(Dispatchers.IO) {
+                presenter.doLogout()
+            } }
         }
         return super.onOptionsItemSelected(item)
     }
