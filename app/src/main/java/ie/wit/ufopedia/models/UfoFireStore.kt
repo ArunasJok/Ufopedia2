@@ -36,7 +36,7 @@ class UfoFireStore(val context: Context) : UfoStore {
     }
 
     override suspend fun update(ufo: UfoModel) {
-        var foundUfo: UfoModel? = ufos.find { p -> p.fbId == ufo.fbId }
+        val foundUfo: UfoModel? = ufos.find { p -> p.fbId == ufo.fbId }
         if (foundUfo != null) {
             foundUfo.title = ufo.title
             foundUfo.description = ufo.description

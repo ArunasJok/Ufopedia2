@@ -7,24 +7,22 @@
         android:iconTint="@color/white"
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/menu_addUfo"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/item_map"
         android:icon="@android:drawable/ic_menu_mapmode"
-        android:title="@string/menu_addUfo"
+        android:title="@string/menu_showMap"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/item_donate"
-        android:iconTint="@color/white"
         android:title="@string/menu_donate"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/item_logout"
         android:title="@string/menu_logout"
-        android:visible="true"
         app:showAsAction="never" />
 
 </menu>
