@@ -21,7 +21,9 @@ class MainApp : Application() {
         // ufos = UfoJSONStore(applicationContext)
         // ufos = UFoStoreRoom(applicationContext)
         ufos = UfoFireStore(applicationContext)
-        donationsStore = DonationMemStore()
+        // donationsStore = DonationMemStore()
+        donationsStore = DonationJSONStore(applicationContext)
+
         i("UFO_pedia has started!")
 
     }

@@ -7,13 +7,13 @@
         android:iconTint="@color/white"
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/menu_addUfo"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/item_map"
         android:icon="@android:drawable/ic_menu_mapmode"
         android:title="@string/menu_showMap"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/item_donate"

@@ -7,12 +7,13 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
+
 
     defaultConfig {
         applicationId "ie.wit.ufopedia"
         minSdk 30
-        targetSdk 31
+        targetSdk 33
         versionCode 7
         versionName "7.0"
 
@@ -61,7 +62,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'androidx.room:room-runtime:2.3.0'
     implementation 'androidx.room:room-ktx:2.3.0'
-    implementation "com.google.firebase:firebase-storage:20.1.0"
     kapt 'androidx.room:room-compiler:2.3.0'
 
 }

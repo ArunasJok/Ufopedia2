@@ -117,6 +117,8 @@ class UfoView : AppCompatActivity() {
         binding.chooseImage.setText(R.string.change_ufo_image)
     }
 
+
+
     override fun onDestroy() {
         super.onDestroy()
         binding.mapView2.onDestroy()

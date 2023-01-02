@@ -36,6 +36,7 @@ class UfoPresenter(private val view: UfoView) {
     var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
     private val locationRequest = createDefaultLocationRequest()
     var locationManuallyChanged = false;
+
     //var binding: ActivityUfoBinding = ActivityUfoBinding.inflate(view.layoutInflater)
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
@@ -115,7 +116,7 @@ class UfoPresenter(private val view: UfoView) {
         val options = MarkerOptions().title(ufo.title).position(LatLng(ufo.location.lat, ufo.location.lng))
         map?.addMarker(options)
         map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(ufo.location.lat, ufo.location.lng), ufo.location.zoom))
-        view?.showUfo(ufo)
+        view.showUfo(ufo)
     }
 
     @SuppressLint("MissingPermission")
@@ -154,7 +155,7 @@ class UfoPresenter(private val view: UfoView) {
                 when(result.resultCode){
                     AppCompatActivity.RESULT_OK -> {
                         if (result.data != null) {
-                            Timber.i("Got Result ${result.data!!.data}")
+                            i("Got Result ${result.data!!.data}")
                             ufo.image = result.data!!.data!!.toString()
                             view.updateImage(ufo.image)
                         }
@@ -172,9 +173,9 @@ class UfoPresenter(private val view: UfoView) {
                 when (result.resultCode) {
                     AppCompatActivity.RESULT_OK -> {
                         if (result.data != null) {
-                            Timber.i("Got Location ${result.data.toString()}")
+                            i("Got Location ${result.data.toString()}")
                             val location = result.data!!.extras?.getParcelable<Location>("location")!!
-                            Timber.i("Location == $location")
+                            i("Location == $location")
                             ufo.location = location
                         } // end of if
                     }

@@ -51,7 +51,7 @@ class LoginPresenter (val view: LoginView)  {
 
     fun doSignUp(email: String, password: String) {
         view.showProgress()
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(view!!) { task ->
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(view) { task ->
             if (task.isSuccessful) {
                 fireStore!!.fetchUfos {
                     view?.hideProgress()

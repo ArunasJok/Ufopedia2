@@ -53,6 +53,7 @@ class UfoFireStore(val context: Context) : UfoStore {
     override suspend fun delete(ufo: UfoModel) {
         db.child("users").child(userId).child("ufos").child(ufo.fbId).removeValue()
         ufos.remove(ufo)
+
     }
 
     override suspend fun clear() {
@@ -61,11 +62,11 @@ class UfoFireStore(val context: Context) : UfoStore {
 
     fun fetchUfos(ufosReady: () -> Unit) {
         val valueEventListener = object : ValueEventListener {
-            override fun onCancelled(dataSnapshot: DatabaseError) {
+            override fun onCancelled(error: DatabaseError) {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                dataSnapshot!!.children.mapNotNullTo(ufos) {
+                dataSnapshot.children.mapNotNullTo(ufos) {
                     it.getValue<UfoModel>(
                         UfoModel::class.java
                     )
@@ -90,8 +91,7 @@ class UfoFireStore(val context: Context) : UfoStore {
             val bitmap = readImageFromPath(context, ufo.image)
 
             bitmap?.let {
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos)
-
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
                 val data = baos.toByteArray()
                 val uploadTask = imageRef.putBytes(data)
 

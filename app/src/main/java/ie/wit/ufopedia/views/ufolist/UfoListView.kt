@@ -1,5 +1,6 @@
 package ie.wit.ufopedia.views.ufolist
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -48,6 +49,7 @@ class UfoListView : AppCompatActivity(), UfoListener {
         return super.onCreateOptionsMenu(menu)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         binding.recyclerView.adapter?.notifyDataSetChanged()
         Timber.i("recyclerView onResume")

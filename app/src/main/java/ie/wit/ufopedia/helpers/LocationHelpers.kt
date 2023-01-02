@@ -14,12 +14,12 @@ const val REQUEST_PERMISSIONS_REQUEST_CODE = 34
 
 fun checkLocationPermissions(activity: Activity) : Boolean {
 
-    if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-        return true
+    return if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        true
     }
     else {
         ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_PERMISSIONS_REQUEST_CODE)
-        return false
+        false
     }
 }
 @SuppressLint("RestrictedApi")

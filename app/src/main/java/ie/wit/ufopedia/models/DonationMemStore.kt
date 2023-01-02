@@ -27,6 +27,21 @@ class DonationMemStore : DonationStore {
         logAll()
     }
 
+    fun findOne(id: Long) : DonationModel? {
+        var foundDonation: DonationModel? = donations.find { p -> p.id == id }
+        return foundDonation
+    }
+
+    override fun update(donation: DonationModel) {
+        var foundDonation = findOne(donation.id!!)
+        if (foundDonation != null) {
+            foundDonation.paymentmethod = donation.paymentmethod
+            foundDonation.amount = donation.amount
+        }
+        logAll()
+    }
+
+
     fun logAll() {
         Timber.v("** Donations List **")
         donations.forEach { Timber.v("Donate ${it}") }

@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">Ufopedia</string>
+    <string name="app_name">UFO_pedia</string>
     <!-- Strings used for LOGIN/LOGOUT -->
     <string name="title_activity_login">UFO_pedia</string>
-    <string name="menu_showMap">Show Map</string>
+    <string name="menu_showMap">Show Map Of UFO\'s</string>
     <string name="menu_logout">Logout</string>
 
     <!-- Strings used for MENU -->
     <string name="menu_addUfo">Add New Sighting</string>
     <string name="menu_cancelUfo">Cancel</string>
     <string name="menu_deleteUfo">Delete</string>
-    <string name="menu_donate">$upport</string>
+    <string name="menu_donate">$upport Us</string>
     <string name="menu_report">Donation List</string>
     <string name="menu_saveUfo">Save</string>
     <!-- Strings used for UFO CARD -->
