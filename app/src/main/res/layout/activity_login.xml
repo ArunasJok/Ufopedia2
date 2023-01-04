@@ -5,32 +5,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login_background"
     tools:context="ie.wit.ufopedia.views.login.LoginView">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/colorAccent"
+        android:background="?android:attr/windowSplashScreenBackground"
         android:fitsSystemWindows="true"
         app:elevation="0dip"
+        app:layout_constraintTop_toTopOf="parent"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextColor="@color/colorPrimary" />
+            android:background="#326C6A6A"
+            android:text="Welcome to UFO_pedia"
+            android:textAlignment="center"
+            app:subtitleTextColor="#F6F3F3"
+            app:titleTextColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="UFO_pedia"
+            android:textAlignment="center"
+            android:textColor="#A8F45B"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            tools:text="UFO_pedia" />
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
+        android:layout_width="385dp"
+        android:layout_height="731dp"
+        android:layout_marginStart="1dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -47,9 +65,12 @@
             android:layout_marginTop="108dp"
             android:layout_marginEnd="36dp"
             android:autofillHints="Please enter your email"
+            android:background="#BEED0808"
+            android:backgroundTint="#0B0A0B"
             android:ems="10"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
+            android:textColor="#59F45B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textView"
@@ -58,10 +79,12 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="72dp"
-            android:layout_height="23dp"
+            android:layout_height="28dp"
             android:layout_marginStart="16dp"
-            android:text="Email"
+            android:text="📧"
             android:textAlignment="textEnd"
+            android:textColor="#A8F45B"
+            android:textSize="24sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/email"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -71,9 +94,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:autofillHints="Enter password"
+            android:background="#DAE11616"
+            android:backgroundTint="#0B0A0B"
             android:ems="10"
             android:inputType="textPassword"
             android:minHeight="48dp"
+            android:textColor="#59F45B"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/email"
             app:layout_constraintHorizontal_bias="0.0"
@@ -85,8 +111,10 @@
             android:id="@+id/textView2"
             android:layout_width="70dp"
             android:layout_height="29dp"
-            android:text="Password"
+            android:text="🔑"
             android:textAlignment="textEnd"
+            android:textColor="#A8F45B"
+            android:textSize="24sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/password"
             app:layout_constraintEnd_toEndOf="@+id/textView"
             app:layout_constraintHorizontal_bias="1.0"
@@ -98,10 +126,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
+            android:backgroundTint="#972C80DA"
             android:text="Sign Up"
-            android:textColor="#000000"
+            android:textColor="#FAFAFA"
+            app:iconTint="?attr/colorButtonNormal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:rippleColor="#686A6C" />
 
         <Button
             android:id="@+id/logIn"
@@ -110,8 +141,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:backgroundTint="#972C80DA"
             android:text="Log In"
-            android:textColor="#000000"
+            android:textColor="#FAFAFA"
             app:layout_constraintBottom_toBottomOf="@+id/signUp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -133,7 +165,9 @@
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUp"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.301" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
