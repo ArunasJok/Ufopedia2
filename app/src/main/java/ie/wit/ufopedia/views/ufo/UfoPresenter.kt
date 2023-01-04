@@ -70,7 +70,6 @@ class UfoPresenter(private val view: UfoView) {
         } else {
             app.ufos.create(ufo)
         }
-
         view.finish()
 
     }

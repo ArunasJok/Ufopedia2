@@ -54,6 +54,7 @@ class UfoListPresenter(val view: UfoListView) {
         refreshIntentLauncher =
             view.registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             { GlobalScope.launch(Dispatchers.Main){
+                app.ufos.clear()
                 getUfos()
             } }
     }
@@ -62,6 +63,7 @@ class UfoListPresenter(val view: UfoListView) {
             view.registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             {  }
     }
+
 
     suspend fun doLogout(){
         FirebaseAuth.getInstance().signOut()

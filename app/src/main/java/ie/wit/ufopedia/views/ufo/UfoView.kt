@@ -118,7 +118,6 @@ class UfoView : AppCompatActivity() {
     }
 
 
-
     override fun onDestroy() {
         super.onDestroy()
         binding.mapView2.onDestroy()

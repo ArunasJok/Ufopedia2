@@ -28,19 +28,22 @@ class UfoListView : AppCompatActivity(), UfoListener {
         super.onCreate(savedInstanceState)
         binding = ActivityUfoListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        // Updating toolbar title
         binding.toolbar.title = title
-        setSupportActionBar(binding.toolbar)
+
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
             binding.toolbar.title = "${title}: ${user.email}"
         }
+        setSupportActionBar(binding.toolbar)
+
         presenter = UfoListPresenter(this)
         app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         loadUfos()
+
 
     }
 
@@ -51,9 +54,10 @@ class UfoListView : AppCompatActivity(), UfoListener {
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
+        super.onResume()
         binding.recyclerView.adapter?.notifyDataSetChanged()
         Timber.i("recyclerView onResume")
-        super.onResume()
+        loadUfos()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -73,6 +77,8 @@ class UfoListView : AppCompatActivity(), UfoListener {
 
     }
 
+
+
     private fun loadUfos() {
         GlobalScope.launch(Dispatchers.Main){
             binding.recyclerView.adapter =
@@ -80,4 +86,5 @@ class UfoListView : AppCompatActivity(), UfoListener {
         }
         binding.recyclerView.adapter?.notifyDataSetChanged()
     }
+
 }

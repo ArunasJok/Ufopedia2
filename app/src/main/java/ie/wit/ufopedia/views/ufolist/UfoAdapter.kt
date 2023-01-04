@@ -26,6 +26,8 @@ class UfoAdapter constructor(private var ufos: List<UfoModel>,
         holder.bind(ufo, listener)
     }
 
+
+
     override fun getItemCount(): Int = ufos.size
 
     class MainHolder(private val binding : CardUfoBinding) :

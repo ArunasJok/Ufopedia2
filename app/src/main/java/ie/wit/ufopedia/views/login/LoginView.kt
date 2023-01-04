@@ -16,8 +16,8 @@ class LoginView : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.progressBar.visibility = View.GONE
 
+        binding.progressBar.visibility = View.GONE
 
         binding.signUp.setOnClickListener {
             val email = binding.email.text.toString()
