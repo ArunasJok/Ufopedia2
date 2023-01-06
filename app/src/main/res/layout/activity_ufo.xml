@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login_background"
     tools:context="ie.wit.ufopedia.views.ufo.UfoView">
 
     <RelativeLayout
@@ -51,25 +52,29 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:text="@string/button_addImage"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/description" />
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                app:rippleColor="#14265E" />
 
             <EditText
                 android:id="@+id/description"
-                android:layout_width="249dp"
-                android:layout_height="62dp"
+                android:layout_width="248dp"
+                android:layout_height="70dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:backgroundTint="#D500F9"
                 android:hint="@string/hint_ufoDescription"
                 android:inputType="text"
                 android:maxLength="25"
                 android:maxLines="1"
                 android:padding="8dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:textColorHint="#FBFAFA"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/lat"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,13 +87,16 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="72dp"
                 android:autofillHints=""
+                android:backgroundTint="#D500F9"
                 android:hint="@string/hint_ufoTitle"
                 android:inputType="text"
                 android:maxLength="25"
                 android:maxLines="1"
                 android:padding="8dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:textColorHint="#F0F8F2F2"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -103,6 +111,8 @@
                 android:layout_marginEnd="28dp"
                 android:text="00.000000"
                 android:textAlignment="center"
+                android:textColor="#FAF9F9"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -114,6 +124,8 @@
                 android:layout_marginEnd="28dp"
                 android:text="00.000000"
                 android:textAlignment="center"
+                android:textColor="#FDFCFC"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lat" />
 
@@ -150,6 +162,8 @@
                 android:layout_marginTop="84dp"
                 android:text="Location"
                 android:textAlignment="center"
+                android:textColor="#F3F0F0"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/ufoTitle"
                 app:layout_constraintTop_toTopOf="parent" />
 

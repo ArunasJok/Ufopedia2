@@ -21,6 +21,7 @@ import timber.log.Timber
 class UfoListView : AppCompatActivity(), UfoListener {
 
     lateinit var app: MainApp
+
     private lateinit var binding: ActivityUfoListBinding
     lateinit var presenter: UfoListPresenter
 
@@ -68,6 +69,11 @@ class UfoListView : AppCompatActivity(), UfoListener {
             R.id.item_logout -> { GlobalScope.launch(Dispatchers.IO) {
                 presenter.doLogout()
             } }
+            R.id.item_delete2 -> {
+                GlobalScope.launch(Dispatchers.IO){
+                    presenter.doDelete2()
+                }
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -76,8 +82,6 @@ class UfoListView : AppCompatActivity(), UfoListener {
         presenter.doEditUfo(ufo)
 
     }
-
-
 
     private fun loadUfos() {
         GlobalScope.launch(Dispatchers.Main){

@@ -17,15 +17,18 @@ import kotlinx.coroutines.launch
 class UfoListPresenter(val view: UfoListView) {
 
     var app: MainApp
+    var ufo = UfoModel()
     private lateinit var refreshIntentLauncher : ActivityResultLauncher<Intent>
     // private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var editIntentLauncher : ActivityResultLauncher<Intent>
+
 
     init {
         app = view.application as MainApp
         // registerMapCallback()
         registerRefreshCallback()
         registerEditCallback()
+
     }
 
     suspend fun getUfos() = app.ufos.findAll()
@@ -62,6 +65,13 @@ class UfoListPresenter(val view: UfoListView) {
         editIntentLauncher =
             view.registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             {  }
+    }
+
+
+    suspend fun doDelete2() {
+        app.ufos.delete(ufo)
+        val launcherIntent = Intent(view, UfoListView::class.java)
+        editIntentLauncher.launch(launcherIntent)
     }
 
 

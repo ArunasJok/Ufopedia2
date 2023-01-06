@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login_background"
     tools:context="ie.wit.ufopedia.views.location.EditLocationView">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -36,6 +37,8 @@
             android:layout_marginStart="96dp"
             android:layout_marginTop="68dp"
             android:text="00.000000"
+            android:textColor="#FAF6F6"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,6 +50,8 @@
             android:layout_marginTop="68dp"
             android:layout_marginEnd="113dp"
             android:text="00.000000"
+            android:textColor="#FBFBFB"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toEndOf="@+id/lat"
@@ -54,18 +59,18 @@
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/mapView2"
-            android:layout_width="387dp"
-            android:layout_height="608dp"
+            android:layout_width="374dp"
+            android:layout_height="602dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lat"
-            app:layout_constraintVertical_bias="0.23" />
+            app:layout_constraintVertical_bias="0.227" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
